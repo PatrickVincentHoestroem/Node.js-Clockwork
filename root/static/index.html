@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+</head>
+<body>
+    <div>
+        <h1 id="heading">Your regional time is:</h1>
+        <h2 id="time"></h2>
+    </div>
+</body>
+
+<style>
+    #heading {
+        text-align: center;
+    }
+
+    #time {
+        text-align: center;
+    }
+</style>
+
+<script>
+    function pad(a, b){
+        return(1e15 + a + '').slice(-b);
+    }
+
+    setInterval(function() {
+        const today = new Date();
+        const zone = -today.getTimezoneOffset()/60;
+
+        const hrs = pad(today.getHours(), 2);
+        const min = pad(today.getMinutes(), 2);
+        const sec = pad(today.getSeconds(), 2);
+
+        const gmt = "GMT+" + zone + " | " + hrs + ":" + min + ":" + sec;
+        
+        document.getElementById("time").innerHTML = gmt;
+    }, 1000);
+
+</script>
+
+</html>
